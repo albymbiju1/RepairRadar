@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Environment variables  ← never push this, contains API keys & DB passwords
+.env
+.env.local
+.env.production
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Uploads (user-uploaded appliance images)
+uploads/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
