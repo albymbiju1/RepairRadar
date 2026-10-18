@@ -1,17 +1,31 @@
-const express = require("express");
 require("dotenv").config();
+
+const express = require("express");
+const cors = require("cors");
 const connectDB = require("./config/db");
-const logger = require('@albymbiju/express-pretty-logger');
+const logger = require("@albymbiju/express-pretty-logger");
 
 const app = express();
-connectDB();
-app.use(express.json());
 
+app.use(cors());
+app.use(express.json({ limit: "10kb" }));
 app.use(logger());
 
 app.get("/health", (req, res) => {
-    res.json({message: `RepairRadar is running successfully`});
+  res.json({
+    success: true,
+    message: "RepairRadar is running successfully",
+  });
 });
 
-const PORT = process.env.PORT
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+const PORT = process.env.PORT || 5000;
+
+const startServer = async () => {
+  await connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`RepairRadar server running on port ${PORT}`);
+  });
+};
+
+startServer();
