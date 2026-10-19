@@ -5,6 +5,8 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const logger = require("@albymbiju/express-pretty-logger");
 
+const authRoutes = require("./routes/authRoutes");
+
 const app = express();
 
 app.use(cors());
@@ -17,6 +19,11 @@ app.get("/health", (req, res) => {
     message: "RepairRadar is running successfully",
   });
 });
+
+// Routes
+app.use("/api/v1/auth", authRoutes);
+
+
 
 const PORT = process.env.PORT || 5000;
 
