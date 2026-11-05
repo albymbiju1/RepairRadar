@@ -7,6 +7,7 @@ const authorizeRoles = (...allowedRoles) => {
                 status: false,
                 message: "Authentication required. Please login."
             });
+        }
 
         if(!allowedRoles.includes(req.user.role)){
             return res.status(403).json({
@@ -25,6 +26,5 @@ const authorizeRoles = (...allowedRoles) => {
         next();
         }
     };
-};
-
+    
 module.exports = authorizeRoles;
